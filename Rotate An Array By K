@@ -1,0 +1,23 @@
+import java.util.ArrayList;
+import java.util.Collections;
+public class Solution {
+	public static ArrayList<Integer> rotateArray(ArrayList<Integer> arr, int k) {
+        int n = arr.size();
+        k = k % n; // Handle cases where k >= n
+        
+        // Reverse the three parts of the array to achieve rotation
+        reverse(arr, 0, k - 1); // Reverse the first k elements
+        reverse(arr, k, n - 1); // Reverse the rest of the elements
+        reverse(arr, 0, n - 1); // Reverse the entire array
+        
+        return arr;
+    }
+
+    private static void reverse(ArrayList<Integer> arr, int start, int end) {
+        while (start < end) {
+            Collections.swap(arr, start, end);
+            start++;
+            end--;
+        }
+    }
+}
